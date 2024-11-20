@@ -1,10 +1,10 @@
 package org.example;
-
+//Q1
 /**
- *  Your Name:
- *  Class Group:
+ *  Your Name:Siew Ya Huai
+ *  Class Group:SD2b
  */
-public class Question1 {    // Interfaces
+public class ContainerManager {    // Interfaces
     public static void main(String[] args) {
         System.out.println("Question 1");
 
