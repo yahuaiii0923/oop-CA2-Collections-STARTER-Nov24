@@ -10,7 +10,7 @@ public class Cylinder implements IMeasurableContainer{
     }
 
     //getter
-    public double gwtheight(){
+    public double getHeight(){
         return height;
     }
 
