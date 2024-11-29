@@ -20,7 +20,7 @@ public class Question4  // Flood Fill (Stack, 2D Array)
         // and -1 representing a wall. Flood fill can not cross through
         // a wall ( and not pass through diagionally).
         //
-        int[][] matrix = new int[ROWS][MAX_COLUMNS]; // 2D Array of int
+        int[][] matrix = new int[ROWS][COLUMNS]; // 2D Array of int
         // define values for each row, -1 to prevent change
         matrix[0] = new int[]{ 0, 0, -1, -1, 0};
         matrix[1] = new int[]{ 0, 0, -1, -1, 0};
