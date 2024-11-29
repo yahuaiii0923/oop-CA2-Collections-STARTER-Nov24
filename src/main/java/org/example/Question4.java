@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class Question4  // Flood Fill (Stack, 2D Array)
 {
-    static final int MAX_ROWS = 5;
-    static final int MAX_COLS = 5;
+    static final int ROWS = 5;
+    static final int COLUMNS = 5;
 
     public static void main(String[] args) {
         System.out.println("Question 4. Floodfill algorithm.");
@@ -20,7 +20,7 @@ public class Question4  // Flood Fill (Stack, 2D Array)
         // and -1 representing a wall. Flood fill can not cross through
         // a wall ( and not pass through diagionally).
         //
-        int[][] matrix = new int[MAX_ROWS][MAX_COLS]; // 2D Array of int
+        int[][] matrix = new int[ROWS][MAX_COLUMNS]; // 2D Array of int
         // define values for each row, -1 to prevent change
         matrix[0] = new int[]{ 0, 0, -1, -1, 0};
         matrix[1] = new int[]{ 0, 0, -1, -1, 0};
@@ -36,8 +36,8 @@ public class Question4  // Flood Fill (Stack, 2D Array)
         Helper function to display the 2D Array
      */
     public static void display(int[][] arr) {
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 10; y++) {
+        for (int x = 0; x < ROWS; x++) {
+            for (int y = 0; y < COLUMNS; y++) {
                 System.out.printf("%4d", arr[x][y]);
             }
             System.out.println();
