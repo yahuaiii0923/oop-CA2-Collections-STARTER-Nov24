@@ -9,6 +9,15 @@ public class Cylinder implements IMeasurableContainer {
         this.weight = weight;
     }
 
+    // getter methods
+    public double getHeight() {
+        return height;
+    }
+
+    public double getDiameter() {
+        return diameter;
+    }
+
     @Override
     public double weight() {
         return weight;

@@ -11,6 +11,19 @@ public class Box implements IMeasurableContainer {
         this.weight = weight;
     }
 
+    // getter methods
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getDepth() {
+        return depth;
+    }
+
     @Override
     public double weight() {
         return weight;

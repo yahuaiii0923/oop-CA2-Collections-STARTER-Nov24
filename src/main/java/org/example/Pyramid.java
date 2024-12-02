@@ -9,6 +9,15 @@ public class Pyramid implements IMeasurableContainer {
         this.weight = weight;
     }
 
+    // getter methods
+    public double getLength() {
+        return length;
+    }
+
+    public double getSideLength() {
+        return sideLength;
+    }
+
     @Override
     public double weight() {
         return weight;
