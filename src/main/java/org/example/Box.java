@@ -24,10 +24,6 @@ public class Box implements IMeasurableContainer{
         return depth;
     }
 
-    public double getWeight(){
-        return weight;
-    }
-
     @Override
     public double weight(){
         return weight;

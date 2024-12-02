@@ -1,7 +1,7 @@
 package org.example;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *  Name:Siew Ya Huai
@@ -14,6 +14,12 @@ filename: name of the file to test.
 */
     public static boolean validate(String filename) throws FileNotFoundException
     {
+        Set<String> selfClosingTags = new HashSet<>(Arrays.asList("<br>"));
+
+        Stack<String> stack = new Stack<>();
+
+        Scanner scanner = new Scanner(System.in);
+        
         return false;
     }
 

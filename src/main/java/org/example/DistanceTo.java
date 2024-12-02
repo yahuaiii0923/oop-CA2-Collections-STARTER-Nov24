@@ -11,14 +11,17 @@ public class DistanceTo implements Comparable<DistanceTo> {
     }
     public String getTarget()
     {
+
         return target;
     }
     public int getDistance()
     {
+
         return distance;
     }
     public int compareTo(DistanceTo other)
     {
+
         return distance - other.distance;
     }
 }

@@ -18,10 +18,6 @@ public class Cylinder implements IMeasurableContainer{
         return diameter;
     }
 
-    public double getWeight(){
-        return weight;
-    }
-
     @Override
     public double weight() {
         return weight;
@@ -29,7 +25,6 @@ public class Cylinder implements IMeasurableContainer{
 
     @Override
     public double rectangularVolume() {
-        double radius = diameter/2;
-        return radius * height;
+        return diameter * diameter * height;
     }
 }
