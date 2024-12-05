@@ -45,7 +45,7 @@ public class Question6      // Flight take-off (Queue)
         Scanner scanner = new Scanner (System.in);
 
         while(true) {
-            System.out.println("> ");
+            System.out.println("Enter command with Flight number (e.g., takeoff, land, next, exit): ");
             String command = scanner.nextLine().trim();
             if (command.startsWith("takeoff")) {
                 String flightCode = command.split(" ", 2)[1];
