@@ -1,5 +1,10 @@
 package org.example;
 
+/**
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
+ */
+
 public class Question10 {
     public static void display(int[][] image) {
         for (int x = 0; x < image.length; x++) {

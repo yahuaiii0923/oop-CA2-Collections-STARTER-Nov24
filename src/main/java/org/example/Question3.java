@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
  */
 public class Question3  {   //Nested HTML (Stack)
 

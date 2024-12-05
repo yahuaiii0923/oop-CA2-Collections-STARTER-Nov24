@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Name:
- * Class Group:
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
  */
 
 public class Question4  // Flood Fill (Stack, 2D Array)

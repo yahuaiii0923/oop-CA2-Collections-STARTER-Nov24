@@ -1,8 +1,8 @@
 package org.example;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
  */
 public class Question11
 {

@@ -45,7 +45,7 @@ public class Question2  // Car Parking - Stack
                         }
 
                         // move the cars on the street back to the driveway
-                        while(!street.isEmpty()) {
+                        while (!street.isEmpty()) {
                             driveway.push(street.pop());
                         }
                     }

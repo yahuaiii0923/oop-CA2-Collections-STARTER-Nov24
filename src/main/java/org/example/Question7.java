@@ -2,8 +2,8 @@ package org.example;
 
 import java.util.Scanner;
 /**
- *  Name:
- *  Class Group:
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
  */
 public class Question7  // Shares Tax Calculations (Queue)
 {
