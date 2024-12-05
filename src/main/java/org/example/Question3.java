@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
@@ -14,13 +15,47 @@ filename: name of the file to test.
 */
     public static boolean validate(String filename) throws FileNotFoundException
     {
-        Set<String> selfClosingTags = new HashSet<>(Arrays.asList("<br>"));
+        String[] selfClosingTags = {"<br>", "<img>", "<hr>", "<input>","<meta>","<link>"};
 
-        Stack<String> stack = new Stack<>();
+        Scanner scanner = new Scanner(new File(filename));
+        Stack<String> tagStack = new Stack<>();
 
-        Scanner scanner = new Scanner(System.in);
-        
-        return false;
+
+
+        while (scanner.hasNext()) {
+            String tag = scanner.next();
+
+            //check if it's a self-closing tag
+            boolean isSelfClosing = false;
+            for(String selfClosingTag : selfClosingTags){
+                if(tag.equals(selfClosingTag)){
+                    isSelfClosing = true;
+                    break;
+                }
+            }
+
+            //if it is self closing tag, skip the iteration
+            if (isSelfClosing){
+                continue;
+            }
+            if (tag.startsWith("</")){
+                if(tagStack.isEmpty()){
+                    scanner.close();
+                    return false;
+                }
+                //pop the top element
+                String lastAccessedTag = tagStack.pop();
+                if(!tag.equals("</" + lastAccessedTag.substring(1))){
+                    scanner.close();
+                    return false;
+                }
+            } else if (tag.startsWith("<") && tag.endsWith(">")) {
+                tagStack.push(tag);
+            }
+        }
+        scanner.close();
+        //the stack should be empty if all tags are matched because they are popped
+        return tagStack.isEmpty();
     }
 
     /*
