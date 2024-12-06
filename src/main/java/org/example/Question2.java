@@ -1,66 +1,71 @@
 package org.example;
 
+import java.util.Stack;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
- *  Name: Cheryl Kong
- *  Class Group: SD2B
+ * Name: Harris Teh Kai Ze and Cheryl Kong
+ * Class Group: SD2B
  */
-public class Question2  // Car Parking - Stack
+public class Question2 // Car Parking - Stack
 {
-    public static void runSimulation() {
+    public static void runSimulation(Scanner sc) {
+        int carNum = 0;
         Stack<Integer> driveway = new Stack<>();
         Stack<Integer> street = new Stack<>();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter commands (e.g., 1 to add car 1, -2 to remove car 2, 0 to stop):");
-
-        while(true) {
+        while (true) {
             try {
-                System.out.println();
-                int command = scanner.nextInt();
+                System.out.println("Enter car number (+num to add, -num to remove, 0 to stop): ");
+                carNum = sc.nextInt();
 
-                if (command == 0) {
-                    System.out.println("Simulation ending. Bye!");
-                    break;
-                } else if (command > 0) {
-                    // add car to driveway
-                    driveway.push(command);
-                    System.out.println("Car " + command + " added to the driveway.");
-                } else {
-                    if (!driveway.contains(-command)) { // check if car is in the driveway
-                        System.out.println("Car " + -command + " is not in the driveway.");
+                // handle add cars to driveway
+                if (carNum > 0) {
+                    driveway.push(carNum);
+                    System.out.println("Car number " + carNum + " has been added to driveway!");
+                    System.out.println("Driveway " + driveway);
+                    // handle removing cars
+                } else if (carNum < 0) {
+                    if (!driveway.contains(-carNum)) {
+                        System.out.println("Car number " + -carNum + " is not in driveway!");
                     } else {
-                        // remove cars until we find the one to remove
-                        while (!driveway.isEmpty()) {
-                            int topCar = driveway.pop(); // remove the top car
-                            if (topCar == -command) {
-                                System.out.println("Car " + -command + " removed from the driveway.");
-                                break;
-                            } else {
-                                street.push(topCar); // move to the street if it's not the car to remove
-                            }
+                        int carToRetrieve = -carNum;
+                        // remove all the cars till it finds the car to retrieve
+                        while (!driveway.isEmpty() && driveway.peek() != carToRetrieve) {
+                            int carStreet = driveway.pop();
+                            street.push(carStreet);
+                            System.out.println("Car number " + carStreet + " has been moved to street!");
+                            System.out.println("Street " + street);
                         }
-
-                        // move the cars on the street back to the driveway
+                        // remove the car from driveway when it reaches the car to retrieve
+                        if (!driveway.isEmpty() && driveway.peek() == carToRetrieve) {
+                            driveway.pop();
+                            System.out.println("Car number " + carToRetrieve + " has been retrieved!");
+                        }
+                        // add back the cars from street to driveway
                         while (!street.isEmpty()) {
-                            driveway.push(street.pop());
+                            int carBackDriveway = street.pop();
+                            driveway.push(carBackDriveway);
+                            System.out.println("Car number " + carBackDriveway + " has been moved back to driveway!");
                         }
+                        System.out.println("Driveway: " + driveway);
+                        System.out.println("Street: " + street);
                     }
+                } else {
+                    System.out.println("Simulation stopped!");
+                    break;
                 }
-
-                System.out.println("Cars in driveway: " + driveway);
             } catch (InputMismatchException e) {
-                System.out.println("Please enter an integer.");
-                scanner.nextLine();
+                System.out.println("Invalid input! Please enter an integer!");
+                // clear invalid input
+                sc.next();
             }
         }
-        scanner.close();
     }
 
     public static void main(String[] args) {
-        runSimulation();
+        Scanner sc = new Scanner(System.in);
+        runSimulation(sc);
+        sc.close();
     }
 }
