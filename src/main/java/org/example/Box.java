@@ -1,4 +1,5 @@
 package org.example;
+
 //Q1
 public class Box implements IMeasurableContainer{
     private double length, width, depth, weight;
