@@ -11,14 +11,22 @@ public class DistanceTo implements Comparable<DistanceTo> {
     }
     public String getTarget()
     {
+
         return target;
     }
     public int getDistance()
     {
+
         return distance;
     }
+
+    @Override
     public int compareTo(DistanceTo other)
     {
-        return distance - other.distance;
+        int distanceComparison = Integer.compare(this.distance, other.distance);
+        if (distanceComparison != 0) {
+            return distanceComparison; // Compare by distance first
+        }
+        return this.target.compareTo(other.target);
     }
 }
