@@ -21,7 +21,7 @@ public class Question8  // Multi-company (Queue)
         Scanner in = new Scanner(System.in);
         String command;
 
-        Map<String, Queue<Block>> companyShares = new HashMap<>();
+        Map<String, Queue<Share>> companyShares = new HashMap<>();
         do {
             System.out.print("Please enter command(e.g. buy, sell or quit): ");
             command = in.next();
@@ -34,8 +34,8 @@ public class Question8  // Multi-company (Queue)
                     System.out.println("Enter price: ");
                     double price = in.nextDouble();
                     // Code to buy shares here
-                    Queue<Block> companyQueue = companyShares.getOrDefault(company, new LinkedList<>());
-                    companyQueue.add(new Block(qty, price));
+                    Queue<Share> companyQueue = companyShares.getOrDefault(company, new LinkedList<>());
+                    companyQueue.add(new Share(qty, price));
                     //add company and the block object
                     companyShares.put(company, companyQueue);
 
@@ -58,10 +58,10 @@ public class Question8  // Multi-company (Queue)
                     int qty = in.nextInt();
 
                     //Calculate the total shares for this company
-                    Queue<Block> companyQueue = companyShares.get(company);
+                    Queue<Share> companyQueue = companyShares.get(company);
                     int totalBuyQuantity = 0;
-                    for (Block block : companyQueue){
-                        totalBuyQuantity += block.qty;
+                    for (Share share : companyQueue){
+                        totalBuyQuantity += share.getQuantity();
                     }
                     //if sell quantity exceeds total buy quantity
                     if (qty > totalBuyQuantity){
@@ -71,20 +71,20 @@ public class Question8  // Multi-company (Queue)
                     System.out.println("Enter price: ");
                     double price = in.nextDouble();
 
-                    Queue<Block> updatedQueue = new LinkedList<>();
+                    Queue<Share> updatedQueue = new LinkedList<>();
 
                     while (qty > 0 && !companyQueue.isEmpty()){
-                        Block firstBlock = companyQueue.poll();
+                        Share firstShare = companyQueue.poll();
                         //if buy quantity less than or equal to sell quantity
-                        if (firstBlock.qty <= qty){
+                        if (firstShare.getQuantity() <= qty){
                             // get the difference of price times quantity times the maximum of buy quantity
-                            totalGains += (price - firstBlock.price) * firstBlock.qty;
+                            totalGains += (price - firstShare.getPrice()) * firstShare.getQuantity();
                             // deduct sell quantity from the buy quantity
-                            qty -= firstBlock.qty;
+                            qty -= firstShare.getQuantity();
                         } else {
-                            totalGains += (price - firstBlock.price) * qty;
-                            firstBlock.qty -= qty;
-                            updatedQueue.add(firstBlock);
+                            totalGains += (price - firstShare.getPrice()) * qty;
+                            firstShare.setQuantity(firstShare.getQuantity() - qty);
+                            updatedQueue.add(firstShare);
                             // exit the loop because sell order is completed
                             qty = 0;
                         }
