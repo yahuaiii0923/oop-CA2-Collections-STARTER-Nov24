@@ -19,6 +19,8 @@ public class DistanceTo implements Comparable<DistanceTo> {
 
         return distance;
     }
+
+    @Override
     public int compareTo(DistanceTo other)
     {
 

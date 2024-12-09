@@ -19,10 +19,6 @@ public class Pyramid implements IMeasurableContainer{
         return sideLength;
     }
 
-    public double getWeight(){
-        return weight;
-    }
-
     @Override
     public double weight() {
         return weight;
