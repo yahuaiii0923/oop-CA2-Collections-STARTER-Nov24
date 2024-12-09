@@ -22,7 +22,7 @@ public class Question7  // Shares Tax Calculations (Queue)
     public static void main(String[] args) {
         double totalGains = 0;
 
-        Queue<Block> tracker = new LinkedList<>();
+        Queue<Share> tracker = new LinkedList<>();
         Scanner in = new Scanner(System.in);
 
         String command;
@@ -35,8 +35,8 @@ public class Question7  // Shares Tax Calculations (Queue)
                     int qty = in.nextInt();
                     System.out.println("Enter price: ");
                     double price = in.nextDouble();
-                    //add the trade to a block object
-                    tracker.add(new Block(qty, price));
+                    //add the trade to a share object
+                    tracker.add(new Share(qty, price));
                     System.out.println("Bought " + qty + " shares at $" + String.format("%.2f",price) + " per share");
                 }catch (InputMismatchException e){
                     System.out.println("Invalid input, please enter a valid number!");
@@ -48,30 +48,30 @@ public class Question7  // Shares Tax Calculations (Queue)
                     System.out.println("Enter sell quantity: ");
                     int qty = in.nextInt();
                     int totalBuyQuantity = in.nextInt();
-                    for (Block block : tracker) {
-                        totalBuyQuantity += block.qty;
+                    for (Share share : tracker) {
+                        totalBuyQuantity += share.getQuantity();
                     }
                     //if sell quantity exceeds total buy quantity
                     if (qty > totalBuyQuantity) {
-                        System.out.println("Error: Cannot sell " + qty + "share. Only " + totalBuyQuantity + " shares available.");
+                        System.out.println("Error: Cannot sell " + qty + "shares. Only " + totalBuyQuantity + " shares available.");
                         continue;
                     }
                     System.out.println("Enter price: ");
                     double price = in.nextDouble();
 
                     while (qty > 0 && !tracker.isEmpty()) {
-                        Block firstBlock = tracker.poll();
+                        Share firstShare = tracker.poll();
                         //if buy quantity of price times quantity times maximum of buy quantity
-                        if(firstBlock.qty <= qty) {
+                        if(firstShare.getQuantity() <= qty) {
                             // get the difference of price times quantity times the maximum of buy quantity
-                            totalGains += (price - firstBlock.price) * firstBlock.qty;
-                            //deduct sell quantity from the buy qunatity
-                            qty -= firstBlock.qty;
+                            totalGains += (price - firstShare.getPrice()) * firstShare.getQuantity();
+                            //deduct sell quantity from the buy quantity
+                            qty -= firstShare.getQuantity();
 
                         }else {
-                            totalGains += (price - firstBlock.price) * qty;
-                            firstBlock.qty -= qty;
-                            tracker.add(firstBlock);
+                            totalGains += (price - firstShare.getPrice()) * qty;
+                            firstShare.setQuantity(firstShare.getQuantity() - qty);
+                            tracker.add(firstShare);
                             // exit the loop because sell order is completed
                             qty = 0;
                         }
